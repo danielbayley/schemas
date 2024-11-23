@@ -1,0 +1,34 @@
+# https://docs.github.com/actions/using-workflows/workflow-syntax-for-github-actions
+# yaml-language-server: $schema=https://json.schemastore.org/github-workflow.json
+name: CI
+on:
+  push:
+    branches: [main]
+    paths:
+    - "*.yaml"
+    - .github/workflows/*.ya?ml
+
+jobs:
+  CI:
+    runs-on: ubuntu-latest
+    env:
+      BRANCH: json
+
+    steps:
+    - name: Checkout
+      uses: actions/checkout@v4
+
+    - name: Compile Schemas
+      run: |
+        mkdir $BRANCH
+        for schema in *.yaml
+        do yq $schema --output-format json > $BRANCH/${schema%.*}.json
+        done
+
+    - name: Deploy
+      uses: s0/git-publish-subdir-action@develop
+      env:
+        REPO: self
+        FOLDER: ${{ env.BRANCH }}
+        MESSAGE: "{msg}"
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
