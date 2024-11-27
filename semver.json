@@ -1,6 +1,7 @@
 {
   "$schema": "https://json-schema.org/draft/2020-12/schema",
   "$id": "https://cdn.statically.io/gh/danielbayley/schemas/refs/heads/json/semver.json",
+  "title": "SemVer",
   "description": "A semver.org compliant semantic version number.",
   "$comment": "https://semver.org#is-there-a-suggested-regular-expression-regex-to-check-a-semver-string",
   "type": "string",
