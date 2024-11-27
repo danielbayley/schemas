@@ -1,0 +1,37 @@
+# https://docs.github.com/actions/using-workflows/workflow-syntax-for-github-actions
+# yaml-language-server: $schema=https://json.schemastore.org/github-workflow.json
+name: CI
+on:
+  push:
+    branches: [main]
+    paths:
+    - "*/*.ys"
+    - .github/workflows/*.ya?ml
+
+jobs:
+  CI:
+    runs-on: macos-latest
+    env:
+      schema: https://json-schema.org/draft/2020-12/schema
+      CDN: cdn.statically.io/gh
+      BRANCH: json
+
+    steps:
+    - name: Checkout & install YAMLScript
+      uses: yaml/yamlscript-workflow-action@main
+      with:
+        ys-file: /dev/null
+
+    - name: Compile Schemas
+      shell: /bin/zsh --no-rcs --err-exit --pipe-fail {0}
+      run: |
+        mkdir $BRANCH
+        for file (*/*.ys) ys --json $file | jq > $BRANCH/$file:t:r.json
+
+    - name: Deploy
+      uses: s0/git-publish-subdir-action@develop
+      env:
+        REPO: self
+        FOLDER: ${{ env.BRANCH }}
+        MESSAGE: "{msg}"
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
