@@ -1,0 +1,13 @@
+!yamlscript/v0/data
+
+filename =: &filename split(FILE "[/.]"):butlast:last
+
+$schema:: ENV.schema
+$id:: "https://$(ENV.CDN)/$(ENV.GITHUB_REPOSITORY)/refs/heads/$(ENV.BRANCH)/$(*filename).json"
+description: A valid npm package name, with optional scope.
+$comment: https://github.com/npm/validate-npm-package-name#naming-rules
+type: string
+minLength: 1
+maxLength: 214
+source =: &src "https://raw.githubusercontent.com/dword-design/package-name-regex/refs/heads/master/src/index.js"
+pattern:: slurp(*src).lines().nth(1).trim().replace(/^\/|\/$/)
