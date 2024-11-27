@@ -4,6 +4,7 @@ filename =: &filename split(FILE "[/.]"):butlast:last
 
 $schema:: ENV.schema
 $id:: "https://$(ENV.CDN)/$(ENV.GITHUB_REPOSITORY)/refs/heads/$(ENV.BRANCH)/$(*filename).json"
+title: npm Package Name
 description: A valid npm package name, with optional scope.
 $comment: https://github.com/npm/validate-npm-package-name#naming-rules
 type: string
