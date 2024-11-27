@@ -1,0 +1,15 @@
+!yamlscript/v0/data
+
+filename =: &filename split(FILE "[/.]"):butlast:last
+
+$schema:: ENV.schema
+$id:: "https://$(ENV.CDN)/$(ENV.GITHUB_REPOSITORY)/refs/heads/$(ENV.BRANCH)/$(*filename).json"
+description: A valid SPDX license ID, or expression.
+$comment: https://spdx.org/licenses
+ids =: "https://raw.githubusercontent.com/jslicense/spdx-license-ids/refs/heads/main/index.json"
+oneOf:
+- enum:: json/load(curl(ids))
+- type: string
+  $comment: https://spdx.github.io/spdx-spec/latest/annexes/spdx-license-expressions
+  minLength: 3
+  pattern: ^\([A-Za-z0-9.-]{3,}\s+(AND|and|OR|or)\s+[A-Za-z0-9.-]{3,}\)$
