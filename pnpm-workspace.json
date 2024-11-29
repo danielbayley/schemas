@@ -7,7 +7,7 @@
   "title": "pnpm Workspace Specification",
   "description": "JSON schema for pnpm-workspace.yaml files.",
   "$comment": "https://pnpm.io/pnpm-workspace_yaml",
-  "definitions": {
+  "$defs": {
     "dependency": {
       "type": "object",
       "minProperties": 1,
@@ -21,7 +21,7 @@
       }
     },
     "catalog": {
-      "$ref": "#/definitions/dependency",
+      "$ref": "#/$defs/dependency",
       "$comment": "https://pnpm.io/catalogs"
     }
   },
@@ -46,14 +46,14 @@
       }
     },
     "catalog": {
-      "$ref": "#/definitions/catalog",
+      "$ref": "#/$defs/catalog",
       "description": "The top-level `catalog` field allows users to define a catalog named `default`."
     },
     "catalogs": {
       "type": "object",
       "minProperties": 1,
       "additionalProperties": {
-        "$ref": "#/definitions/catalog"
+        "$ref": "#/$defs/catalog"
       },
       "description": "Multiple catalogs with arbitrarily chosen names can be configured under the `catalogs` key."
     }
