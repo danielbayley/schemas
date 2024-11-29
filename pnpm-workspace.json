@@ -21,9 +21,6 @@
       }
     },
     "catalog": {
-      "type": "object",
-      "minProperties": 1,
-      "additionalProperties": false,
       "$ref": "#/definitions/dependency",
       "$comment": "https://pnpm.io/catalogs"
     }
