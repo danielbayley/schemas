@@ -11,4 +11,4 @@ type: string
 minLength: 1
 maxLength: 214
 source =: &src "https://raw.githubusercontent.com/dword-design/package-name-regex/refs/heads/master/src/index.js"
-pattern:: slurp(*src).lines().nth(1).trim().replace(/^\/|\/$/)
+pattern:: slurp(*src).lines().nth(1).trim().replace(qr("^/|/$"))
