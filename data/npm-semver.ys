@@ -1,6 +1,6 @@
 !yamlscript/v0/data
 
-filename =: &filename split(FILE "[/.]"):butlast:last
+filename =: &filename fs-filename(FILE):fs/strip-ext
 
 $schema:: ENV.schema
 $id:: "https://$(ENV.CDN)/$(ENV.GITHUB_REPOSITORY)/refs/heads/$(ENV.BRANCH)/$(*filename).json"
