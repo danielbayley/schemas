@@ -8,7 +8,6 @@ title: npm SemVer
 description: Version must be parseable by node-semver, which is bundled with npm as a dependency.
 $comment: https://github.com/npm/node-semver#range-grammar
 type: string
-minLength: 3
-range    =: '^(\*|latest|next|(^v?|\sv?|[~^]|[<>]=?))?'
-markdown =: "https://raw.githubusercontent.com/semver/semver/refs/heads/master/semver.md"
-pattern:: range + slurp(markdown).lines().nth(356).subs(1)
+minLength: 1
+maxLength: 256
+pattern: ^(\*|latest|next|(^v?|\sv?|[~^]|[<>]=?))?(0|[1-9xX*]\d*)(\.(0|[1-9xX*]\d*)(\.(0|[1-9xX*]\d*)(-((0|[1-9xX*]\d*|\d*[a-zA-Z-][0-9a-zA-Z-]*)(\.(0|[1-9xX*]\d*|\d*[a-zA-Z-][0-9a-zA-Z-]*))*))?(\+([0-9a-zA-Z-]+(\.[0-9a-zA-Z-]+)*))?)?)?$
