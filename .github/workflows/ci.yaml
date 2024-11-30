@@ -1,5 +1,5 @@
 # https://docs.github.com/actions/using-workflows/workflow-syntax-for-github-actions
-# yaml-language-server: $schema=https://json.schemastore.org/github-workflow.json
+# yaml-language-server: $schema=https://json.schemastore.org/github-workflow.json
 name: CI
 on:
   push:
