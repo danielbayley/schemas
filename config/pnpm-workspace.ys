@@ -2,13 +2,14 @@
 
 filename =: &filename fs-filename(FILE):fs/strip-ext
 schema   =: &ref "/schemas/refs/heads/$(ENV.BRANCH)"
+domain   =: &domain "pnpm.io"
 version  =: &v 10
 
 $schema:: ENV.schema
 $id:: "https://$(ENV.URL)/$(*filename).json"
 title: pnpm Workspace Specification
 description:: "JSON schema for $(*filename).yaml files."
-$comment:: "https://pnpm.io/$(*filename)_yaml"
+$comment:: "https://$(*domain)/$(*filename)_yaml"
 
 $defs:
   object =:: &object
@@ -30,9 +31,9 @@ $defs:
     maxLength: 260
 
   dependency:
-    $comment:: "https://docs.npmjs.com/cli/v$(*v)/configuring-npm/package-json#dependencies"
     mdx =: "https://raw.githubusercontent.com/npm/documentation/refs/heads/main/content/cli/v$(*v)/configuring-npm/package-json.mdx"
     description:: slurp(mdx).lines().nth(495)
+    $comment:: "https://docs.npmjs.com/cli/v$(*v)/configuring-npm/package-json#dependencies"
     <<: *object
     propertyNames:
       $ref:: "$(*ref)/npm-package-name.json"
@@ -41,9 +42,8 @@ $defs:
 
   catalog:
     $ref: "#/$defs/dependency"
-    $comment: https://pnpm.io/catalogs
 
-md =: "https://github.com/pnpm/pnpm.io/raw/refs/heads/main/docs/catalogs.md"
+md =: "https://github.com/pnpm/$(*domain)/raw/refs/heads/main/docs/catalogs.md"
 markdown =: slurp(md).lines()
 
 <<: *object
@@ -60,9 +60,11 @@ properties:
   catalog:
     $ref: "#/$defs/catalog"
     description:: markdown.nth(86)
+    $comment:: "https://$(*domain)#default-catalog"
 
   catalogs:
     <<: *object
     description:: markdown.nth(98)
+    $comment:: "https://$(*domain)#named-catalogs"
     additionalProperties:
       $ref: "#/$defs/catalog"
