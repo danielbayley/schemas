@@ -12,7 +12,7 @@ jobs:
   CI:
     runs-on: macos-latest
     env:
-      schema: https://json-schema.org/draft/2020-12/schema
+      draft: 2020-12
       CDN: cdn.statically.io
       BRANCH: json
 
@@ -28,7 +28,9 @@ jobs:
         mkdir $BRANCH
         for file (*/*.ys) ys --json $file | jq > $BRANCH/$file:t:r.json
       env:
+        schema: https://json-schema.org/draft/${{ env.draft }}/schema
         URL: ${{ env.CDN }}/gh/${{ github.repository }}/refs/heads/${{ env.BRANCH }}
+        REF: /${{ github.event.repository.name }}/refs/heads/${{ env.BRANCH }}
 
     - name: Deploy
       uses: s0/git-publish-subdir-action@develop

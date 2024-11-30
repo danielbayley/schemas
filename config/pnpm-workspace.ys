@@ -1,7 +1,6 @@
 !yamlscript/v0/data
 
 filename =: &filename fs-filename(FILE):fs/strip-ext
-schema   =: &ref "/schemas/refs/heads/$(ENV.BRANCH)"
 domain   =: &domain "pnpm.io"
 version  =: &v 10
 
@@ -36,9 +35,9 @@ $defs:
     $comment:: "https://docs.npmjs.com/cli/v$(*v)/configuring-npm/package-json#dependencies"
     <<: *object
     propertyNames:
-      $ref:: "$(*ref)/npm-package-name.json"
+      $ref:: "$(ENV.REF)/npm-package-name.json"
     additionalProperties:
-      $ref:: "$(*ref)/npm-semver.json"
+      $ref:: "$(ENV.REF)/npm-semver.json"
 
   catalog:
     $ref: "#/$defs/dependency"
@@ -50,7 +49,7 @@ markdown =: slurp(md).lines()
 required: [packages]
 properties:
   $schema:
-    $ref:: "$(*ref)/uri.json"
+    $ref:: "$(ENV.REF)/uri.json"
 
   packages:
     description: Workspace package paths. Glob patterns are supported.
