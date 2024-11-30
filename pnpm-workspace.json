@@ -14,15 +14,14 @@
       "additionalProperties": {
         "$ref": "/schemas/refs/heads/json/npm-semver.json"
       },
-      "$comment": "https://docs.npmjs.com/cli/v10/configuring-npm/package-json#dependencies",
       "description": "Dependencies are specified in a simple object that maps a package name to a version range. The version range is a string which has one or more space-separated descriptors. Dependencies can also be identified with a tarball or git URL.",
+      "$comment": "https://docs.npmjs.com/cli/v10/configuring-npm/package-json#dependencies",
       "propertyNames": {
         "$ref": "/schemas/refs/heads/json/npm-package-name.json"
       }
     },
     "catalog": {
-      "$ref": "#/$defs/dependency",
-      "$comment": "https://pnpm.io/catalogs"
+      "$ref": "#/$defs/dependency"
     }
   },
   "required": [
@@ -47,7 +46,8 @@
     },
     "catalog": {
       "$ref": "#/$defs/catalog",
-      "description": "The top-level `catalog` field allows users to define a catalog named `default`."
+      "description": "The top-level `catalog` field allows users to define a catalog named `default`.",
+      "$comment": "https://pnpm.io#default-catalog"
     },
     "catalogs": {
       "type": "object",
@@ -55,7 +55,8 @@
       "additionalProperties": {
         "$ref": "#/$defs/catalog"
       },
-      "description": "Multiple catalogs with arbitrarily chosen names can be configured under the `catalogs` key."
+      "description": "Multiple catalogs with arbitrarily chosen names can be configured under the `catalogs` key.",
+      "$comment": "https://pnpm.io#named-catalogs"
     }
   }
 }
