@@ -5,7 +5,7 @@ schema   =: &ref "/schemas/refs/heads/$(ENV.BRANCH)"
 version  =: &v 10
 
 $schema:: ENV.schema
-$id:: "https://$(ENV.CDN)/$(ENV.GITHUB_REPOSITORY)/refs/heads/$(ENV.BRANCH)/$(*filename).json"
+$id:: "https://$(ENV.URL)/$(*filename).json"
 title: pnpm Workspace Specification
 description:: "JSON schema for $(*filename).yaml files."
 $comment:: "https://pnpm.io/$(*filename)_yaml"

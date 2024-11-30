@@ -3,7 +3,7 @@
 filename =: &filename fs-filename(FILE):fs/strip-ext
 
 $schema:: ENV.schema
-$id:: "https://$(ENV.CDN)/$(ENV.GITHUB_REPOSITORY)/refs/heads/$(ENV.BRANCH)/$(*filename).json"
+$id:: "https://$(ENV.URL)/$(*filename).json"
 title: npm SemVer
 description: Version must be parseable by node-semver, which is bundled with npm as a dependency.
 $comment: https://github.com/npm/node-semver#range-grammar
