@@ -25,9 +25,7 @@ $defs:
     type: string
     minLength: 1
 
-  path =:: &path
-    <<: *string
-    maxLength: 260
+  path =: &path merge(*string { :maxLength 260 })
 
   dependency:
     mdx =: "https://raw.githubusercontent.com/npm/documentation/refs/heads/main/content/cli/v$(*v)/configuring-npm/package-json.mdx"
