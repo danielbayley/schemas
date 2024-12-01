@@ -3,7 +3,7 @@
 filename =: &filename fs-filename(FILE):fs/strip-ext
 
 $schema:: ENV.schema
-$id:: "https://$(ENV.URL)/$(*filename).json"
+$id:: "$(ENV.URL)/$(*filename).json"
 title: npm Package Name
 description: A valid npm package name, with optional scope.
 $comment: https://github.com/npm/validate-npm-package-name#naming-rules

@@ -3,7 +3,7 @@
 filename =: &filename fs-filename(FILE):fs/strip-ext
 
 $schema:: ENV.schema
-$id:: "https://$(ENV.URL)/$(*filename).json"
+$id:: "$(ENV.URL)/$(*filename).json"
 title: SemVer
 description: A semver.org compliant semantic version number.
 $comment: https://semver.org#is-there-a-suggested-regular-expression-regex-to-check-a-semver-string

@@ -7,7 +7,7 @@ branch   =: &branch "main"
 version  =: &v 10
 
 $schema:: ENV.schema
-$id:: "https://$(ENV.URL)/$(*filename).json"
+$id:: "$(ENV.URL)/$(*filename).json"
 title: pnpm Workspace Specification
 description:: "JSON schema for $(*filename).yaml files."
 $comment:: "https://$(*domain)/$(*filename)_yaml"

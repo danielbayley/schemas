@@ -29,7 +29,7 @@ jobs:
         for file (*/*.ys) ys --json $file | jq > $BRANCH/$file:t:r.json
       env:
         schema: https://json-schema.org/draft/${{ env.draft }}/schema
-        URL: ${{ env.CDN }}/gh/${{ github.repository }}/refs/heads/${{ env.BRANCH }}
+        URL: https://${{ env.CDN }}/gh/${{ github.repository }}/refs/heads/${{ env.BRANCH }}
         REF: /${{ github.event.repository.name }}/refs/heads/${{ env.BRANCH }}
 
     - name: Deploy

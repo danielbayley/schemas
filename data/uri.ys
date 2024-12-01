@@ -3,7 +3,7 @@
 filename =: &filename fs-filename(FILE):fs/strip-ext
 
 $schema:: ENV.schema
-$id:: "https://$(ENV.URL)/$(*filename).json"
+$id:: "$(ENV.URL)/$(*filename).json"
 title:: uc(*filename)
 description: A valid URL/URI or host name.
 $comment: https://json-schema.org/understanding-json-schema/reference/string#resource-identifiers

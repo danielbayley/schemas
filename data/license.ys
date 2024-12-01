@@ -3,7 +3,7 @@
 filename =: &filename fs-filename(FILE):fs/strip-ext
 
 $schema:: ENV.schema
-$id:: "https://$(ENV.URL)/$(*filename).json"
+$id:: "$(ENV.URL)/$(*filename).json"
 title:: uc1(*filename)
 description: A valid SPDX license ID, or expression.
 $comment: https://spdx.org/licenses
