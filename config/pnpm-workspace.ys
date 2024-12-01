@@ -2,6 +2,8 @@
 
 filename =: &filename fs-filename(FILE):fs/strip-ext
 domain   =: &domain "pnpm.io"
+repo     =: &repo "https://github.com/pnpm/$(*domain)"
+branch   =: &branch "main"
 version  =: &v 10
 
 $schema:: ENV.schema
@@ -28,7 +30,7 @@ $defs:
   path =: &path merge(*string { :maxLength 260 })
 
   dependency:
-    mdx =: "https://raw.githubusercontent.com/npm/documentation/refs/heads/main/content/cli/v$(*v)/configuring-npm/package-json.mdx"
+    mdx =: "https://raw.githubusercontent.com/npm/documentation/refs/heads/$(*branch)/content/cli/v$(*v)/configuring-npm/package-json.mdx"
     description:: slurp(mdx).lines().nth(495)
     $comment:: "https://docs.npmjs.com/cli/v$(*v)/configuring-npm/package-json#dependencies"
     <<: *object
@@ -40,28 +42,34 @@ $defs:
   catalog:
     $ref: "#/$defs/dependency"
 
-md =: "https://github.com/pnpm/$(*domain)/raw/refs/heads/main/docs/catalogs.md"
-markdown =: slurp(md).lines()
-
 <<: *object
 required: [packages]
 properties:
   $schema:
     $ref:: "$(ENV.REF)/uri.json"
 
+  docs =: &docs "$(*repo)/raw/refs/heads/$(*branch)/docs"
+  remove =: qr("[^\w.\s/-]+")
+
   packages:
-    description: Workspace package paths. Glob patterns are supported.
+    md =: "$(*docs)/$(*filename)_yaml.md"
+    markdown =: slurp(md).lines()
+    description:: markdown.subvec(5 9).join("\n").replace(remove)
+    $comment::    markdown.subvec(23 25).join(" ")
     <<: *array
     items: *path
 
+  md =: "$(*docs)/catalogs.md"
+  markdown =: slurp(md).lines()
+
   catalog:
     $ref: "#/$defs/catalog"
-    description:: markdown.nth(86)
+    description:: markdown.nth(86).replace(remove)
     $comment:: "https://$(*domain)#default-catalog"
 
   catalogs:
     <<: *object
-    description:: markdown.nth(98)
+    description:: markdown.nth(98).replace(remove)
     $comment:: "https://$(*domain)#named-catalogs"
     additionalProperties:
       $ref: "#/$defs/catalog"
