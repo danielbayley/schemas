@@ -37,10 +37,8 @@
       "uniqueItems": true,
       "description": "Workspace package paths. Glob patterns are supported.",
       "items": {
-        "<<": {
-          "type": "string",
-          "minLength": 1
-        },
+        "type": "string",
+        "minLength": 1,
         "maxLength": 260
       }
     },
