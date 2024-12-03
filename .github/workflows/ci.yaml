@@ -17,10 +17,11 @@ jobs:
       BRANCH: json
 
     steps:
-    - name: Checkout & install YAMLScript
-      uses: yaml/yamlscript-workflow-action@main
-      with:
-        ys-file: /dev/null
+    - name: Checkout
+      uses: actions/checkout@v4
+
+    - name: Install YAMLScript
+      run: brew install yaml/yamlscript/ys
 
     - name: Compile Schemas
       shell: /bin/zsh --no-rcs --err-exit --pipe-fail {0}
