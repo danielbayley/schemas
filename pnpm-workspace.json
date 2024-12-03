@@ -38,8 +38,10 @@
       "description": "pnpm-workspace.yaml defines the root of the workspace and enables you to\ninclude / exclude directories from the workspace. By default all packages of\nall subdirectories are included.\n",
       "$comment": "The root package is always included, even when custom location wildcards are used.",
       "items": {
-        "type": "string",
-        "minLength": 1,
+        "<<": {
+          "type": "string",
+          "minLength": 1
+        },
         "maxLength": 260
       }
     },
