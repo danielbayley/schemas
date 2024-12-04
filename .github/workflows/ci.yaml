@@ -8,6 +8,9 @@ on:
     - "*/*.ys"
     - .github/workflows/*.ya?ml
 
+  schedule:
+  - cron: 0 5 * * * # 5AM daily
+
 jobs:
   CI:
     runs-on: macos-latest
