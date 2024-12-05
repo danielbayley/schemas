@@ -10,4 +10,4 @@ $comment: https://semver.org#is-there-a-suggested-regular-expression-regex-to-ch
 type: string
 minLength: 3
 markdown =: "https://raw.githubusercontent.com/semver/semver/refs/heads/master/semver.md"
-pattern:: slurp(markdown).lines().nth(356)
+pattern:: slurp(markdown):lines.nth(356)

@@ -33,7 +33,7 @@ $defs:
 
   dependency:
     mdx =: "https://raw.githubusercontent.com/npm/documentation/refs/heads/$(*branch)/content/cli/v$(*v)/configuring-npm/package-json.mdx"
-    description:: slurp(mdx).lines().nth(495)
+    description:: slurp(mdx):lines.nth(495)
     $comment:: "https://docs.npmjs.com/cli/v$(*v)/configuring-npm/package-json#dependencies"
     <<: *object
     propertyNames:
@@ -55,7 +55,7 @@ properties:
 
   packages:
     md =: "$(*docs)/$(*filename)_yaml.md"
-    markdown =: slurp(md).lines()
+    markdown =: slurp(md):lines
     description:: markdown.subvec(5 9).join("\n").replace(remove)
     $comment::    markdown.subvec(23 25).join(" ")
     <<: *array
@@ -63,7 +63,7 @@ properties:
       <<: *path
 
   md =: "$(*docs)/catalogs.md"
-  markdown =: slurp(md).lines()
+  markdown =: slurp(md):lines
 
   catalog:
     $ref: "#/$defs/catalog"
