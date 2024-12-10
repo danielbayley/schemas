@@ -644,6 +644,11 @@
       ]
     },
     {
+      "enum": [
+        "UNLICENSED"
+      ]
+    },
+    {
       "type": "string",
       "$comment": "https://spdx.github.io/spdx-spec/latest/annexes/spdx-license-expressions",
       "minLength": 3,
