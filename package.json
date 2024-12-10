@@ -6,7 +6,7 @@
   "$comment": "https://docs.npmjs.com/cli/v10/configuring-npm/package-json",
   "$defs": {
     "person": {
-      "description": "The \"author\" is one person. \"contributors\" is an array of people. A \"person\" is an object with a \"name\" field and optionally \"url\" and \"email\".",
+      "description": "The 'author' is one person. 'contributors' is an array of people. A 'person' is an object with a 'name' field and optionally 'url' and 'email'.",
       "$comment": "https://docs.npmjs.com/cli/v10/configuring-npm/package-json#people-fields-author-contributors",
       "anyOf": [
         {
@@ -204,7 +204,7 @@
       ]
     },
     "files": {
-      "description": "The optional files field is an array of file patterns that describes the entries to be included when your package is installed as a dependency. File patterns follow a similar syntax to .gitignore, but reversed: including a file, directory, or glob pattern will make it so that file is included in the tarball when it's packed. Omitting the field will make it default to \"*\", which means it will include all files.",
+      "description": "The optional files field is an array of file patterns that describes the entries to be included when your package is installed as a dependency. File patterns follow a similar syntax to .gitignore, but reversed: including a file, directory, or glob pattern will make it so that file is included in the tarball when it's packed. Omitting the field will make it default to '*', which means it will include all files.",
       "$comment": "https://docs.npmjs.com/cli/v10/configuring-npm/package-json#files",
       "items": {
         "not": {
@@ -255,7 +255,7 @@
       "minItems": 1
     },
     "exports": {
-      "description": "The \"exports\" provides a modern alternative to \"main\" allowing multiple entry points to be defined, conditional entry resolution support between environments, and preventing any other entry points besides those defined in \"exports\". This encapsulation allows module authors to clearly define the public interface for their package. For more details see the node.js documentation on package entry points.",
+      "description": "The 'exports' provides a modern alternative to 'main' allowing multiple entry points to be defined, conditional entry resolution support between environments, and preventing any other entry points besides those defined in 'exports'. This encapsulation allows module authors to clearly define the public interface for their package. For more details see the node.js documentation on package entry points.",
       "$comment": "https://docs.npmjs.com/cli/v10/configuring-npm/package-json#exports",
       "additionalProperties": true,
       "type": "object",
@@ -399,7 +399,7 @@
       ]
     },
     "scripts": {
-      "description": "The \"scripts\" property is a dictionary containing script commands that are run at various times in the lifecycle of your package. The key is the lifecycle event, and the value is the command to run at that point.",
+      "description": "The 'scripts' property is a dictionary containing script commands that are run at various times in the lifecycle of your package. The key is the lifecycle event, and the value is the command to run at that point.",
       "$comment": "https://docs.npmjs.com/cli/using-npm/scripts",
       "properties": {
         "lint": {
@@ -423,7 +423,7 @@
       "minProperties": 1
     },
     "config": {
-      "description": "A \"config\" object can be used to set configuration parameters used in package scripts that persist across upgrades.",
+      "description": "A 'config' object can be used to set configuration parameters used in package scripts that persist across upgrades.",
       "$comment": "https://docs.npmjs.com/cli/v10/configuring-npm/package-json#config",
       "additionalProperties": {
         "type": "string",
@@ -669,7 +669,7 @@
       "minProperties": 1
     },
     "packageManager": {
-      "description": "The \"packageManager\" field defines which package manager is expected to beused when working on the current project. It can be set to any of thesupported package managers, and will ensure that your teams use the exactsame package manager versions without having to install anything else other thanNode.js.",
+      "description": "The 'packageManager' field defines which package manager is expected to beused when working on the current project. It can be set to any of thesupported package managers, and will ensure that your teams use the exactsame package manager versions without having to install anything else other thanNode.js.",
       "$comment": "https://nodejs.org/api/packages.html#packagemanager",
       "pattern": "^(npm|pnpm|yarn|bun)@\\d+\\.\\d+\\.\\d+(-.+)?$",
       "type": "string",
@@ -677,12 +677,12 @@
     },
     "private": {
       "type": "boolean",
-      "description": "If you set \"private\": true in your package.json, then npm will refuse to publish it.",
+      "description": "If you set 'private': true in your package.json, then npm will refuse to publish it.",
       "$comment": "https://docs.npmjs.com/cli/v10/configuring-npm/package-json#private"
     },
     "publishConfig": {
       "$ref": "#/$defs/config",
-      "description": "This is a set of config values that will be used at publish-time. It's especially handy if you want to set the tag, registry or access, so that you can ensure that a given package is not tagged with \"latest\", published to the global public registry or that a scoped module is private by default.",
+      "description": "This is a set of config values that will be used at publish-time. It's especially handy if you want to set the tag, registry or access, so that you can ensure that a given package is not tagged with 'latest', published to the global public registry or that a scoped module is private by default.",
       "$comment": "https://docs.npmjs.com/cli/v10/configuring-npm/package-json#publishconfig"
     },
     "workspaces": {
