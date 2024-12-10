@@ -9,7 +9,7 @@ description: A valid SPDX license ID, or expression.
 $comment: https://spdx.org/licenses
 ids =: "https://raw.githubusercontent.com/jslicense/spdx-license-ids/refs/heads/main/index.json"
 oneOf:
-- enum:: json/load(slurp(ids))
+- enum:: merge(json/load(slurp(ids)) "UNLICENSED")
 - type: string
   $comment: https://spdx.github.io/spdx-spec/latest/annexes/spdx-license-expressions
   minLength: 3
