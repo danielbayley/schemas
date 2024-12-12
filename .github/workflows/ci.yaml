@@ -21,11 +21,16 @@ jobs:
       BRANCH: json
 
     steps:
-    - name: Checkout
-      uses: actions/checkout@v4
+    - name: Checkout & install YAMLScript
+      uses: yaml/yamlscript-workflow-action@main
+      with:
+        ys-file: /dev/null
 
-    - name: Install YAMLScript
-      run: brew install yaml/yamlscript/ys
+    - name: Set Environment
+      run: env >> $GITHUB_ENV
+      env:
+        schema: https://json-schema.org/draft/${{ env.draft }}/schema
+        ref: /gh/${{ github.repository }}/refs/heads/${{ env.BRANCH }}
 
     - name: Compile Schemas
       shell: /bin/zsh --no-rcs --err-exit --pipe-fail {0}
@@ -33,9 +38,7 @@ jobs:
         mkdir $BRANCH
         for file (*/*.ys) ys --json $file | jq > $BRANCH/$file:t:r.json
       env:
-        schema: https://json-schema.org/draft/${{ env.draft }}/schema
-        URL: https://${{ env.CDN }}/gh/${{ github.repository }}/refs/heads/${{ env.BRANCH }}
-        REF: /${{ github.event.repository.name }}/refs/heads/${{ env.BRANCH }}
+        URL: https://${{ env.CDN }}${{ env.ref }}
 
     - name: Deploy
       uses: s0/git-publish-subdir-action@develop

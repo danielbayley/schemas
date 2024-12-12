@@ -37,9 +37,9 @@ $defs:
     $comment:: "https://docs.npmjs.com/cli/v$(*v)/configuring-npm/package-json#dependencies"
     <<: *object
     propertyNames:
-      $ref:: "$(ENV.REF)/npm-package-name.json"
+      $ref:: "$(ENV.ref)/npm-package-name.json"
     additionalProperties:
-      $ref:: "$(ENV.REF)/npm-semver.json"
+      $ref:: "$(ENV.ref)/npm-semver.json"
 
   catalog:
     $ref: "#/$defs/dependency"
@@ -48,7 +48,7 @@ $defs:
 required: [packages]
 properties:
   $schema:
-    $ref:: "$(ENV.REF)/uri.json"
+    $ref:: "$(ENV.ref)/uri.json"
 
   docs =: &docs "$(*repo)/raw/refs/heads/$(*branch)/docs"
   remove =: qr("[^\w.\s/-]+")
