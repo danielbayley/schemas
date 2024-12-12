@@ -7,7 +7,15 @@ $id:: "$(ENV.URL)/$(*filename).json"
 title: npm SemVer
 description: Version must be parseable by node-semver, which is bundled with npm as a dependency.
 $comment: https://github.com/npm/node-semver#range-grammar
+
+digit       =: &digit       '0|[1-9]\d*'
+minor-patch =: &minor-patch "(\\.($(*digit)|[xX*]))"
+tags        =: &tags        '\*|latest|next'
+prefix      =: &prefix      '([~^v]|[<>]=?)'
+suffix      =: &suffix      '[-+][a-zA-Z.0-9-+]+'
+combine     =: &combine     '[ \t|-]*'
+boundary    =: &boundary    '\b|$'
+
 type: string
-minLength: 1
 maxLength: 256
-pattern: ^(\*|latest|next|(^v?|\sv?|[~^]|[<>]=?))?(0|[1-9xX*]\d*)(\.(0|[1-9xX*]\d*)(\.(0|[1-9xX*]\d*)(-((0|[1-9xX*]\d*|\d*[a-zA-Z-][0-9a-zA-Z-]*)(\.(0|[1-9xX*]\d*|\d*[a-zA-Z-][0-9a-zA-Z-]*))*))?(\+([0-9a-zA-Z-]+(\.[0-9a-zA-Z-]+)*))?)?)?$
+pattern:: "^($(*tags)|$(*combine)?$(*prefix)?($(*digit))($(*minor-patch){1,3})?($(*suffix)|$(*boundary)))+$"
