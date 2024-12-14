@@ -1,6 +1,6 @@
 {
   "$schema": "https://json-schema.org/draft/2020-12/schema",
-  "$id": "https://cdn.statically.io/gh/danielbayley/schemas/refs/heads/json/pnpm-workspace.json",
+  "$id": "https://pnpm-workspace.json",
   "title": "pnpm Workspace Specification",
   "description": "JSON schema for pnpm-workspace.yaml files.",
   "$comment": "https://pnpm.io/pnpm-workspace_yaml",
@@ -29,10 +29,10 @@
       "$comment": "https://docs.npmjs.com/cli/v10/configuring-npm/package-json#dependencies",
       "$ref": "#/$defs/object",
       "propertyNames": {
-        "$ref": "/schemas/refs/heads/json/npm-package-name.json"
+        "$ref": "/gh/danielbayley/schemas/refs/heads/json/npm-package-name.json"
       },
       "additionalProperties": {
-        "$ref": "/schemas/refs/heads/json/npm-semver.json"
+        "$ref": "/gh/danielbayley/schemas/refs/heads/json/npm-semver.json"
       }
     }
   },
@@ -42,7 +42,7 @@
   ],
   "properties": {
     "$schema": {
-      "$ref": "/schemas/refs/heads/json/uri.json"
+      "$ref": "/gh/danielbayley/schemas/refs/heads/json/uri.json"
     },
     "packages": {
       "description": "`pnpm-workspace.yaml` defines the root of the [workspace] and enables you to\ninclude / exclude directories from the workspace. By default, all packages of\nall subdirectories are included.\n",

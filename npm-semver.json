@@ -1,6 +1,6 @@
 {
   "$schema": "https://json-schema.org/draft/2020-12/schema",
-  "$id": "https://cdn.statically.io/gh/danielbayley/schemas/refs/heads/json/npm-semver.json",
+  "$id": "https://npm-semver.json",
   "title": "npm SemVer",
   "description": "Version must be parseable by node-semver, which is bundled with npm as a dependency.",
   "$comment": "https://github.com/npm/node-semver#range-grammar",
