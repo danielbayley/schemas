@@ -5,47 +5,22 @@
   "description": "JSON schema for pnpm-workspace.yaml files.",
   "$comment": "https://pnpm.io/pnpm-workspace_yaml",
   "$defs": {
-    "object": {
-      "type": "object",
-      "minProperties": 1
-    },
-    "object-strict": {
-      "additionalProperties": false,
-      "type": "object",
-      "minProperties": 1
-    },
-    "array": {
-      "type": "array",
-      "minItems": 1,
-      "uniqueItems": true
-    },
-    "path": {
-      "type": "string",
-      "minLength": 1,
-      "maxLength": 260
-    },
     "dependency": {
       "description": "Dependencies are specified in a simple object that maps a package name to a version range. The version range is a string which has one or more space-separated descriptors. Dependencies can also be identified with a tarball or git URL.",
       "$comment": "https://docs.npmjs.com/cli/v10/configuring-npm/package-json#dependencies",
-      "$ref": "#/$defs/object",
       "propertyNames": {
-        "anyOf": [
-          {
-            "enum": [
-              "<<:"
-            ]
-          },
-          {
-            "$ref": "/gh/danielbayley/schemas/refs/heads/json/npm-package-name.json"
-          }
-        ]
+        "$ref": "/gh/danielbayley/schemas/refs/heads/json/npm-package-name.json"
       },
       "additionalProperties": {
         "$ref": "/gh/danielbayley/schemas/refs/heads/json/npm-semver.json"
-      }
+      },
+      "type": "object",
+      "minProperties": 1
+    },
+    "catalog": {
+      "$ref": "#/$defs/dependency"
     }
   },
-  "$ref": "#/$defs/object-strict",
   "required": [
     "packages"
   ],
@@ -54,25 +29,33 @@
       "$ref": "/gh/danielbayley/schemas/refs/heads/json/uri.json"
     },
     "packages": {
-      "description": "`pnpm-workspace.yaml` defines the root of the [workspace] and enables you to\ninclude / exclude directories from the workspace. By default, all packages of\nall subdirectories are included.\n",
+      "description": "pnpm-workspace.yaml defines the root of the workspace and enables you to\ninclude / exclude directories from the workspace. By default all packages of\nall subdirectories are included.\n",
       "$comment": "The root package is always included, even when custom location wildcards are used.",
-      "$ref": "#/$defs/array",
       "items": {
-        "$ref": "#/$defs/path"
-      }
+        "maxLength": 260,
+        "type": "string",
+        "minLength": 1
+      },
+      "type": "array",
+      "minItems": 1,
+      "uniqueItems": true
     },
     "catalog": {
-      "$ref": "#/$defs/dependency",
-      "description": "The top-level `catalog` field allows users to define a catalog named `default`.",
+      "$ref": "#/$defs/catalog",
+      "description": "The top-level catalog field allows users to define a catalog named default.",
       "$comment": "https://pnpm.io#default-catalog"
     },
     "catalogs": {
-      "$ref": "#/$defs/object",
-      "description": "Multiple catalogs with arbitrarily chosen names can be configured under the `catalogs` key.",
+      "description": "Multiple catalogs with arbitrarily chosen names can be configured under the catalogs key.",
       "$comment": "https://pnpm.io#named-catalogs",
       "additionalProperties": {
-        "$ref": "#/$defs/dependency"
-      }
+        "$ref": "#/$defs/catalog"
+      },
+      "type": "object",
+      "minProperties": 1
     }
-  }
+  },
+  "type": "object",
+  "minProperties": 1,
+  "additionalProperties": false
 }
