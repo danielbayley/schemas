@@ -29,7 +29,16 @@
       "$comment": "https://docs.npmjs.com/cli/v10/configuring-npm/package-json#dependencies",
       "$ref": "#/$defs/object",
       "propertyNames": {
-        "$ref": "/gh/danielbayley/schemas/refs/heads/json/npm-package-name.json"
+        "anyOf": [
+          {
+            "enum": [
+              "<<:"
+            ]
+          },
+          {
+            "$ref": "/gh/danielbayley/schemas/refs/heads/json/npm-package-name.json"
+          }
+        ]
       },
       "additionalProperties": {
         "$ref": "/gh/danielbayley/schemas/refs/heads/json/npm-semver.json"
