@@ -2,77 +2,89 @@
 
 filename =: &filename fs-filename(FILE):fs/strip-ext
 domain   =: &domain "pnpm.io"
-repo     =: &repo "https://github.com/pnpm/$(*domain)"
 branch   =: &branch "main"
-version  =: &v 10
+repo     =: &repo "https://github.com/pnpm/$(*domain)"
+docs     =: &docs "$(*repo)/raw/refs/heads/$(*branch)/docs"
+id       =: &id   "$(*filename)_yaml"
+md       =: "$(*docs)/$(*id).md"
+markdown =: slurp(md):lines
+metadata =: yaml/load(markdown.nth(2))
+title    =: &title metadata.title
 
 $schema:: ENV.schema
 $id:: "$(ENV.URL)/$(*filename).json"
-title: pnpm Workspace Specification
-description:: "JSON schema for $(*filename).yaml files."
-$comment:: "https://$(*domain)/$(*filename)_yaml"
+title: *title
+description:: "JSON schema for $(*title) files."
+$comment:: "https://$(*domain)/$(*id)"
 
 $defs:
-  object =:: &object
+  object: &object
     type: object
     minProperties: 1
+
+  object-strict:
+    <<: *object
     additionalProperties: false
 
-  array =:: &array
+  array: &array
     type: array
     minItems: 1
+
+  array-unique:
+    <<: *array
     uniqueItems: true
 
-  string =:: &string
+  string:
     type: string
     minLength: 1
 
-  path =:: &path
-    <<: *string
+  path:
+    $ref: "#/$defs/string"
     maxLength: 260
 
+  version =: &v 10
+  path =: &path "cli/v$(*v)/configuring-npm/package-json"
+  mdx  =: "https://github.com/npm/documentation/raw/refs/heads/$(*branch)/content/$(*path).mdx"
+
   dependency:
-    mdx =: "https://raw.githubusercontent.com/npm/documentation/refs/heads/$(*branch)/content/cli/v$(*v)/configuring-npm/package-json.mdx"
     description:: slurp(mdx):lines.nth(495)
-    $comment:: "https://docs.npmjs.com/cli/v$(*v)/configuring-npm/package-json#dependencies"
-    <<: *object
+    $comment:: "https://docs.npmjs.com/$(*path)#dependencies"
+    type: object
+    minProperties: 1
     propertyNames:
-      $ref:: "$(ENV.ref)/npm-package-name.json"
+      anyOf:
+      - enum: [<<]
+      - $ref:: "$(ENV.ref)/npm-package-name.json"
     additionalProperties:
       $ref:: "$(ENV.ref)/npm-semver.json"
 
-  catalog:
-    $ref: "#/$defs/dependency"
-
-<<: *object
+$ref: "#/$defs/object-strict"
 required: [packages]
 properties:
   $schema:
     $ref:: "$(ENV.ref)/uri.json"
 
-  docs =: &docs "$(*repo)/raw/refs/heads/$(*branch)/docs"
-  remove =: qr("[^\w.\s/-]+")
+  remove =: /[^\w.\s\/-]+/
 
   packages:
-    md =: "$(*docs)/$(*filename)_yaml.md"
-    markdown =: slurp(md):lines
-    description:: markdown.subvec(5 9).join("\n").replace(remove)
-    $comment::    markdown.subvec(23 25).join(" ")
-    <<: *array
+    description::
+      markdown.subvec(5 9).join("\n").replace(remove) +
+      markdown.subvec(23 25).join(" ")
+    $ref: "#/$defs/array-unique"
     items:
-      <<: *path
+      $ref: "#/$defs/path"
 
   md =: "$(*docs)/catalogs.md"
   markdown =: slurp(md):lines
 
   catalog:
-    $ref: "#/$defs/catalog"
+    $ref: "#/$defs/dependency"
     description:: markdown.nth(86).replace(remove)
     $comment:: "https://$(*domain)#default-catalog"
 
   catalogs:
-    <<: *object
+    $ref: "#/$defs/object"
     description:: markdown.nth(98).replace(remove)
     $comment:: "https://$(*domain)#named-catalogs"
     additionalProperties:
-      $ref: "#/$defs/catalog"
+      $ref: "#/$defs/dependency"
