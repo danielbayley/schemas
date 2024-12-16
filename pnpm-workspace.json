@@ -69,7 +69,7 @@
       }
     },
     "catalog": {
-      "$ref": "/gh/danielbayley/schemas/refs/heads/json/package.json#/$defs/dependency",
+      "$ref": "#/$defs/dependency",
       "description": "The top-level catalog field allows users to define a catalog named default.",
       "$comment": "https://pnpm.io#default-catalog"
     },
@@ -78,7 +78,7 @@
       "description": "Multiple catalogs with arbitrarily chosen names can be configured under the catalogs key.",
       "$comment": "https://pnpm.io#named-catalogs",
       "additionalProperties": {
-        "$ref": "/gh/danielbayley/schemas/refs/heads/json/package.json#/$defs/dependency"
+        "$ref": "#/$defs/dependency"
       }
     }
   }
