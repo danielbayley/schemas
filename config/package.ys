@@ -1,0 +1,29 @@
+!yamlscript/v0/data
+
+filename =: &filename fs-filename(FILE):fs/strip-ext
+version  =: &v 10
+branch   =: &branch "main"
+path     =: &path "cli/v$(*v)/configuring-npm/$(*filename)-json"
+mdx      =: "https://github.com/npm/documentation/raw/refs/heads/$(*branch)/content/$(*path).mdx"
+markdown =: slurp(mdx):lines
+metadata =: markdown.subvec(1 7).join("\n")
+yaml     =: yaml/load(metadata)
+
+$schema:: ENV.schema
+$id:: "$(ENV.URL)/$(*filename).json"
+title:: yaml.title
+description:: yaml.description
+$comment:: &docs "https://docs.npmjs.com/$(*path)"
+
+$defs:
+  dependency:
+    description:: markdown.nth(495)
+    $comment:: "$(*docs)#dependencies"
+    type: object
+    minProperties: 1
+    propertyNames:
+      anyOf:
+      - enum: [<<]
+      - $ref:: "$(ENV.ref)/npm-package-name.json"
+    additionalProperties:
+      $ref:: "$(ENV.ref)/npm-semver.json"

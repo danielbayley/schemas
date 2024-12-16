@@ -42,22 +42,6 @@ $defs:
     $ref: "#/$defs/string"
     maxLength: 260
 
-  version =: &v 10
-  path =: &path "cli/v$(*v)/configuring-npm/package-json"
-  mdx  =: "https://github.com/npm/documentation/raw/refs/heads/$(*branch)/content/$(*path).mdx"
-
-  dependency:
-    description:: slurp(mdx):lines.nth(495)
-    $comment:: "https://docs.npmjs.com/$(*path)#dependencies"
-    type: object
-    minProperties: 1
-    propertyNames:
-      anyOf:
-      - enum: [<<]
-      - $ref:: "$(ENV.ref)/npm-package-name.json"
-    additionalProperties:
-      $ref:: "$(ENV.ref)/npm-semver.json"
-
 $ref: "#/$defs/object-strict"
 required: [packages]
 properties:
@@ -78,7 +62,7 @@ properties:
   markdown =: slurp(md):lines
 
   catalog:
-    $ref: "#/$defs/dependency"
+    $ref:: &dependency "$(ENV.ref)/package.json#/\\$defs/dependency"
     description:: markdown.nth(86).replace(remove)
     $comment:: "https://$(*domain)#default-catalog"
 
@@ -87,4 +71,4 @@ properties:
     description:: markdown.nth(98).replace(remove)
     $comment:: "https://$(*domain)#named-catalogs"
     additionalProperties:
-      $ref: "#/$defs/dependency"
+      $ref: *dependency
