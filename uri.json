@@ -1,6 +1,6 @@
 {
   "$schema": "https://json-schema.org/draft/2020-12/schema",
-  "$id": "https://cdn.statically.io/gh/danielbayley/schemas/refs/heads/json/uri.json",
+  "$id": "https://cdn.statically.io/uri.json",
   "title": "URI",
   "description": "A valid URL/URI or host name.",
   "$comment": "https://json-schema.org/understanding-json-schema/reference/string#resource-identifiers",
