@@ -18,12 +18,12 @@
             ]
           },
           {
-            "$ref": "/gh/danielbayley/schemas/refs/heads/json/npm-package-name.json"
+            "$ref": "/npm-package-name.json"
           }
         ]
       },
       "additionalProperties": {
-        "$ref": "/gh/danielbayley/schemas/refs/heads/json/npm-semver.json"
+        "$ref": "/npm-semver.json"
       }
     }
   }

@@ -38,7 +38,7 @@
   ],
   "properties": {
     "$schema": {
-      "$ref": "/gh/danielbayley/schemas/refs/heads/json/uri.json"
+      "$ref": "/uri.json"
     },
     "packages": {
       "description": "pnpm-workspace.yaml defines the root of the workspace and enables you to\ninclude / exclude directories from the workspace. By default all packages of\nall subdirectories are included.\nThe root package is always included, even when custom location wildcards are used.",
@@ -48,7 +48,7 @@
       }
     },
     "catalog": {
-      "$ref": "/gh/danielbayley/schemas/refs/heads/json/package.json#/$defs/dependency",
+      "$ref": "/package.json#/$defs/dependency",
       "description": "The top-level catalog field allows users to define a catalog named default.",
       "$comment": "https://pnpm.io#default-catalog"
     },
@@ -57,7 +57,7 @@
       "description": "Multiple catalogs with arbitrarily chosen names can be configured under the catalogs key.",
       "$comment": "https://pnpm.io#named-catalogs",
       "additionalProperties": {
-        "$ref": "/gh/danielbayley/schemas/refs/heads/json/package.json#/$defs/dependency"
+        "$ref": "/package.json#/$defs/dependency"
       }
     }
   }
