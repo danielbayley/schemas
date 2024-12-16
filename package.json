@@ -1,0 +1,30 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://package.json",
+  "title": "package.json",
+  "description": "Specifics of npm's package.json handling",
+  "$comment": "https://docs.npmjs.com/cli/v10/configuring-npm/package-json",
+  "$defs": {
+    "dependency": {
+      "description": "Dependencies are specified in a simple object that maps a package name to a version range. The version range is a string which has one or more space-separated descriptors. Dependencies can also be identified with a tarball or git URL.",
+      "$comment": "https://docs.npmjs.com/cli/v10/configuring-npm/package-json#dependencies",
+      "type": "object",
+      "minProperties": 1,
+      "propertyNames": {
+        "anyOf": [
+          {
+            "enum": [
+              "<<"
+            ]
+          },
+          {
+            "$ref": "/gh/danielbayley/schemas/refs/heads/json/npm-package-name.json"
+          }
+        ]
+      },
+      "additionalProperties": {
+        "$ref": "/gh/danielbayley/schemas/refs/heads/json/npm-semver.json"
+      }
+    }
+  }
+}
