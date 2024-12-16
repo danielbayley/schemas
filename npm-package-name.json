@@ -1,6 +1,6 @@
 {
   "$schema": "https://json-schema.org/draft/2020-12/schema",
-  "$id": "https://npm-package-name.json",
+  "$id": "https://cdn.statically.io/gh/danielbayley/schemas/refs/heads/json/npm-package-name.json",
   "title": "npm Package Name",
   "description": "A valid npm package name, with optional scope.",
   "$comment": "https://github.com/npm/validate-npm-package-name#naming-rules",

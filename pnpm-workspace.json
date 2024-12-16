@@ -1,6 +1,6 @@
 {
   "$schema": "https://json-schema.org/draft/2020-12/schema",
-  "$id": "https://pnpm-workspace.json",
+  "$id": "https://cdn.statically.io/gh/danielbayley/schemas/refs/heads/json/pnpm-workspace.json",
   "title": "pnpm Workspace Specification",
   "description": "JSON schema for pnpm-workspace.yaml files.",
   "$comment": "https://pnpm.io/pnpm-workspace_yaml",
@@ -62,7 +62,7 @@
       }
     },
     "catalog": {
-      "$ref": "#/$defs/dependency",
+      "$ref": "/gh/danielbayley/schemas/refs/heads/json/package.json#/$defs/dependency",
       "description": "The top-level `catalog` field allows users to define a catalog named `default`.",
       "$comment": "https://pnpm.io#default-catalog"
     },
@@ -71,7 +71,7 @@
       "description": "Multiple catalogs with arbitrarily chosen names can be configured under the `catalogs` key.",
       "$comment": "https://pnpm.io#named-catalogs",
       "additionalProperties": {
-        "$ref": "#/$defs/dependency"
+        "$ref": "/gh/danielbayley/schemas/refs/heads/json/package.json#/$defs/dependency"
       }
     }
   }

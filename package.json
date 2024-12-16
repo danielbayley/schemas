@@ -1,6 +1,6 @@
 {
   "$schema": "https://json-schema.org/draft/2020-12/schema",
-  "$id": "https://package.json",
+  "$id": "https://cdn.statically.io/gh/danielbayley/schemas/refs/heads/json/package.json",
   "title": "package.json",
   "description": "Specifics of npm's package.json handling",
   "$comment": "https://docs.npmjs.com/cli/v10/configuring-npm/package-json",
