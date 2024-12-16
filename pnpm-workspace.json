@@ -1,6 +1,6 @@
 {
   "$schema": "https://json-schema.org/draft/2020-12/schema",
-  "$id": "https://cdn.statically.io/pnpm-workspace.json",
+  "$id": "https://cdn.statically.io/gh/danielbayley/schemas/refs/heads/json/pnpm-workspace.json",
   "title": "pnpm Workspace Specification",
   "description": "JSON schema for pnpm-workspace.yaml files.",
   "$comment": "https://pnpm.io/pnpm-workspace_yaml",
