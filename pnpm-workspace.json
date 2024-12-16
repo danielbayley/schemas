@@ -16,33 +16,20 @@
     },
     "array": {
       "type": "array",
-      "minItems": 1,
-      "uniqueItems": true
+      "minItems": 1
+    },
+    "array-unique": {
+      "uniqueItems": true,
+      "type": "array",
+      "minItems": 1
+    },
+    "string": {
+      "type": "string",
+      "minLength": 1
     },
     "path": {
-      "type": "string",
-      "minLength": 1,
+      "$ref": "#/$defs/string",
       "maxLength": 260
-    },
-    "dependency": {
-      "description": "Dependencies are specified in a simple object that maps a package name to a version range. The version range is a string which has one or more space-separated descriptors. Dependencies can also be identified with a tarball or git URL.",
-      "$comment": "https://docs.npmjs.com/cli/v10/configuring-npm/package-json#dependencies",
-      "$ref": "#/$defs/object",
-      "propertyNames": {
-        "anyOf": [
-          {
-            "enum": [
-              "<<"
-            ]
-          },
-          {
-            "$ref": "/gh/danielbayley/schemas/refs/heads/json/npm-package-name.json"
-          }
-        ]
-      },
-      "additionalProperties": {
-        "$ref": "/gh/danielbayley/schemas/refs/heads/json/npm-semver.json"
-      }
     }
   },
   "$ref": "#/$defs/object-strict",
@@ -54,21 +41,20 @@
       "$ref": "/gh/danielbayley/schemas/refs/heads/json/uri.json"
     },
     "packages": {
-      "description": "`pnpm-workspace.yaml` defines the root of the [workspace] and enables you to\ninclude / exclude directories from the workspace. By default, all packages of\nall subdirectories are included.\n",
-      "$comment": "The root package is always included, even when custom location wildcards are used.",
-      "$ref": "#/$defs/array",
+      "description": "pnpm-workspace.yaml defines the root of the workspace and enables you to\ninclude / exclude directories from the workspace. By default all packages of\nall subdirectories are included.\nThe root package is always included, even when custom location wildcards are used.",
+      "$ref": "#/$defs/array-unique",
       "items": {
         "$ref": "#/$defs/path"
       }
     },
     "catalog": {
       "$ref": "/gh/danielbayley/schemas/refs/heads/json/package.json#/$defs/dependency",
-      "description": "The top-level `catalog` field allows users to define a catalog named `default`.",
+      "description": "The top-level catalog field allows users to define a catalog named default.",
       "$comment": "https://pnpm.io#default-catalog"
     },
     "catalogs": {
       "$ref": "#/$defs/object",
-      "description": "Multiple catalogs with arbitrarily chosen names can be configured under the `catalogs` key.",
+      "description": "Multiple catalogs with arbitrarily chosen names can be configured under the catalogs key.",
       "$comment": "https://pnpm.io#named-catalogs",
       "additionalProperties": {
         "$ref": "/gh/danielbayley/schemas/refs/heads/json/package.json#/$defs/dependency"
