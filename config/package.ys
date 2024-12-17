@@ -1,7 +1,7 @@
 !yamlscript/v0/data
 
 filename =: &filename fs-filename(FILE):fs/strip-ext
-version  =: &v 10
+version  =: &v 11
 branch   =: &branch "main"
 path     =: &path "cli/v$(*v)/configuring-npm/$(*filename)-json"
 mdx      =: "https://github.com/npm/documentation/raw/refs/heads/$(*branch)/content/$(*path).mdx"
@@ -17,7 +17,7 @@ $comment:: &docs "https://docs.npmjs.com/$(*path)"
 
 $defs:
   dependency:
-    description:: markdown.nth(495)
+    description:: markdown.nth(497)
     $comment:: "$(*docs)#dependencies"
     type: object
     minProperties: 1
