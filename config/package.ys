@@ -10,7 +10,7 @@ metadata =: markdown.subvec(1 7).join("\n")
 yaml     =: yaml/load(metadata)
 
 $schema:: ENV.schema
-$id:: "$(ENV.URL)/$(*filename).json"
+$id:: "$(ENV.URL)/$(yaml.title)"
 title:: yaml.title
 description:: yaml.description
 $comment:: &docs "https://docs.npmjs.com/$(*path)"
