@@ -9,5 +9,5 @@ description: A semver.org compliant semantic version number.
 $comment: https://semver.org#is-there-a-suggested-regular-expression-regex-to-check-a-semver-string
 type: string
 minLength: 3
-markdown =: "https://raw.githubusercontent.com/semver/semver/refs/heads/master/semver.md"
+markdown =: "https://github.com/semver/semver/raw/refs/heads/master/semver.md"
 pattern:: slurp(markdown):lines.nth(356)

@@ -7,7 +7,7 @@ $id:: "$(ENV.URL)/$(*filename).json"
 title:: uc1(*filename)
 description: A valid SPDX license ID, or expression.
 $comment: https://spdx.org/licenses
-ids =: "https://raw.githubusercontent.com/jslicense/spdx-license-ids/refs/heads/main/index.json"
+ids =: "https://github.com/jslicense/spdx-license-ids/raw/refs/heads/main/index.json"
 oneOf:
 - enum:: merge(json/load(slurp(ids)) "UNLICENSED")
 - type: string
