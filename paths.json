@@ -4,6 +4,7 @@
   "title": "Paths",
   "description": "A valid file or folder path.",
   "$comment": "https://regexr.com",
+  "$ref": "#/$defs/path",
   "$defs": {
     "path": {
       "errorMessage": "String should be a valid file or folder path.",
@@ -46,17 +47,5 @@
       "errorMessage": "String should be a valid man page file path.",
       "pattern": "^(\\.?\\/(usr\\/share\\/man\\/)?)?(man[1-8]?\\/)?[a-z]+(\\.[1-8])?$"
     }
-  },
-  "errorMessage": "String should be a valid file or folder path.",
-  "oneOf": [
-    {
-      "pattern": "^[~.]?\\/?.*\\.[A-Za-z0-9]{1,14}$"
-    },
-    {
-      "pattern": "^~?\\/?([^\\n/.]+|[^\\n/]+\\/)*$"
-    }
-  ],
-  "type": "string",
-  "minLength": 1,
-  "maxLength": 260
+  }
 }
