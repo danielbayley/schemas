@@ -6,6 +6,11 @@
   "$comment": "https://regexr.com",
   "$ref": "#/$defs/path",
   "$defs": {
+    "string": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 260
+    },
     "path": {
       "errorMessage": "String should be a valid file or folder path.",
       "oneOf": [
@@ -16,44 +21,32 @@
           "pattern": "^~?\\/?([^\\n/.]+|[^\\n/]+\\/)*$"
         }
       ],
-      "type": "string",
-      "minLength": 1,
-      "maxLength": 260
+      "$ref": "#/$defs/string"
     },
     "path-file": {
       "errorMessage": "String should be a valid file path.",
       "pattern": "^[~.]?\\/?.*\\.[A-Za-z0-9]{1,14}$",
-      "type": "string",
-      "minLength": 1,
-      "maxLength": 260
+      "$ref": "#/$defs/string"
     },
     "path-folder": {
       "errorMessage": "String should be a valid folder path.",
       "pattern": "^~?\\/?([^\\n/.]+|[^\\n/]+\\/)*$",
-      "type": "string",
-      "minLength": 1,
-      "maxLength": 260
+      "$ref": "#/$defs/string"
     },
     "path-file-js": {
       "errorMessage": "String should be a valid JavaScript file path.",
       "pattern": "^~?\\/?([^\\n/.]+|[^\\n/]+\\/)*[^\\n/.]+\\.[mc]?jsx?$",
-      "type": "string",
-      "minLength": 1,
-      "maxLength": 260
+      "$ref": "#/$defs/string"
     },
     "path-file-es": {
       "errorMessage": "String should be a valid JavaScript or TypeScript file path.",
       "pattern": "^~?\\/?([^\\n/.]+|[^\\n/]+\\/)*[^\\n/.]+\\.[mc]?[tj]sx?$",
-      "type": "string",
-      "minLength": 1,
-      "maxLength": 260
+      "$ref": "#/$defs/string"
     },
     "path-file-man": {
       "errorMessage": "String should be a valid man page file path.",
       "pattern": "^(\\.?\\/(usr\\/share\\/man\\/)?)?(man[1-8]?\\/)?[a-z]+(\\.[1-8])?$",
-      "type": "string",
-      "minLength": 1,
-      "maxLength": 260
+      "$ref": "#/$defs/string"
     }
   }
 }
