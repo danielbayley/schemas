@@ -1,0 +1,62 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://https://cdn.statically.io/gh/danielbayley/schemas/refs/heads/json/paths.json",
+  "title": "Paths",
+  "description": "A valid file or folder path.",
+  "$comment": "https://regexr.com",
+  "$defs": {
+    "path": {
+      "errorMessage": "String should be a valid file or folder path.",
+      "oneOf": [
+        {
+          "pattern": "^~?\\/?([^\\n/.]+|[^\\n/]+\\/)*$"
+        },
+        {
+          "pattern": "^[~.]?\\/?.*\\.[A-Za-z0-9]{1,14}$"
+        }
+      ],
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 260
+    },
+    "path-file": {
+      "errorMessage": "String should be a valid file path.",
+      "pattern": "^[~.]?\\/?.*\\.[A-Za-z0-9]{1,14}$",
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 260
+    },
+    "path-folder": {
+      "$ref": "#/$defs/path-file",
+      "errorMessage": "String should be a valid folder path.",
+      "pattern": "^~?\\/?([^\\n/.]+|[^\\n/]+\\/)*$"
+    },
+    "path-file-js": {
+      "$ref": "#/$defs/path-file",
+      "errorMessage": "String should be a valid JavaScript file path.",
+      "pattern": "^~?\\/?([^\\n/.]+|[^\\n/]+\\/)[^\\n/.]+\\.[mc]?jsx?$"
+    },
+    "path-file-es": {
+      "$ref": "#/$defs/path-file",
+      "errorMessage": "String should be a valid JavaScript or TypeScript file path.",
+      "pattern": "^~?\\/?([^\\n/.]+|[^\\n/]+\\/)[^\\n/.]+\\.[mc]?[tj]sx?$"
+    },
+    "path-file-man": {
+      "$ref": "#/$defs/path-file",
+      "errorMessage": "String should be a valid man page file path.",
+      "pattern": "^(\\.?\\/(usr\\/share\\/man\\/)?)?(man[1-8]?\\/)?[a-z]+(\\.[1-8])?$"
+    }
+  },
+  "errorMessage": "String should be a valid file or folder path.",
+  "oneOf": [
+    {
+      "pattern": "^~?\\/?([^\\n/.]+|[^\\n/]+\\/)*$"
+    },
+    {
+      "pattern": "^[~.]?\\/?.*\\.[A-Za-z0-9]{1,14}$"
+    }
+  ],
+  "type": "string",
+  "minLength": 1,
+  "maxLength": 260
+}
