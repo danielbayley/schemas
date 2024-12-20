@@ -9,10 +9,10 @@
       "errorMessage": "String should be a valid file or folder path.",
       "oneOf": [
         {
-          "pattern": "^~?\\/?([^\\n/.]+|[^\\n/]+\\/)*$"
+          "pattern": "^[~.]?\\/?.*\\.[A-Za-z0-9]{1,14}$"
         },
         {
-          "pattern": "^[~.]?\\/?.*\\.[A-Za-z0-9]{1,14}$"
+          "pattern": "^~?\\/?([^\\n/.]+|[^\\n/]+\\/)*$"
         }
       ],
       "type": "string",
@@ -50,10 +50,10 @@
   "errorMessage": "String should be a valid file or folder path.",
   "oneOf": [
     {
-      "pattern": "^~?\\/?([^\\n/.]+|[^\\n/]+\\/)*$"
+      "pattern": "^[~.]?\\/?.*\\.[A-Za-z0-9]{1,14}$"
     },
     {
-      "pattern": "^[~.]?\\/?.*\\.[A-Za-z0-9]{1,14}$"
+      "pattern": "^~?\\/?([^\\n/.]+|[^\\n/]+\\/)*$"
     }
   ],
   "type": "string",
