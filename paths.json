@@ -28,24 +28,32 @@
       "maxLength": 260
     },
     "path-folder": {
-      "$ref": "#/$defs/path-file",
       "errorMessage": "String should be a valid folder path.",
-      "pattern": "^~?\\/?([^\\n/.]+|[^\\n/]+\\/)*$"
+      "pattern": "^~?\\/?([^\\n/.]+|[^\\n/]+\\/)*$",
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 260
     },
     "path-file-js": {
-      "$ref": "#/$defs/path-file",
       "errorMessage": "String should be a valid JavaScript file path.",
-      "pattern": "^~?\\/?([^\\n/.]+|[^\\n/]+\\/)[^\\n/.]+\\.[mc]?jsx?$"
+      "pattern": "^~?\\/?([^\\n/.]+|[^\\n/]+\\/)*[^\\n/.]+\\.[mc]?jsx?$",
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 260
     },
     "path-file-es": {
-      "$ref": "#/$defs/path-file",
       "errorMessage": "String should be a valid JavaScript or TypeScript file path.",
-      "pattern": "^~?\\/?([^\\n/.]+|[^\\n/]+\\/)[^\\n/.]+\\.[mc]?[tj]sx?$"
+      "pattern": "^~?\\/?([^\\n/.]+|[^\\n/]+\\/)*[^\\n/.]+\\.[mc]?[tj]sx?$",
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 260
     },
     "path-file-man": {
-      "$ref": "#/$defs/path-file",
       "errorMessage": "String should be a valid man page file path.",
-      "pattern": "^(\\.?\\/(usr\\/share\\/man\\/)?)?(man[1-8]?\\/)?[a-z]+(\\.[1-8])?$"
+      "pattern": "^(\\.?\\/(usr\\/share\\/man\\/)?)?(man[1-8]?\\/)?[a-z]+(\\.[1-8])?$",
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 260
     }
   }
 }
