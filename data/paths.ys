@@ -1,0 +1,60 @@
+!yamlscript/v0/data
+
+filename =: &filename fs-filename(FILE):fs/strip-ext
+
+$schema:: ENV.schema
+$id:: "https://$(ENV.URL)/$(*filename).json"
+title:: uc1(*filename)
+description: &desc A valid file or folder path.
+$comment: https://regexr.com
+$ref: "#/$defs/path"
+
+$defs:
+  string:
+    type: string
+    minLength: 1
+    maxLength: 260
+    anchor =:: &string
+      $ref: "#/$defs/string"
+
+  ext          =: '\.[A-Za-z0-9]{1,14}$'
+  path-segment =: '[^\n/.]+'
+  path-folder  =: str('^~?\/?(' path-segment "|" path-segment.replace(".") '\/)*$')
+  path-file    =: str('^[~.]?\/?.*' ext)
+
+  path:
+    <<: *string
+    errorMessage:: "String should be $(lc(*desc))"
+    oneOf:
+    - pattern:: path-file
+    - pattern:: path-folder
+
+  path-file:
+    <<: *string
+    errorMessage: String should be a valid file path.
+    pattern:: path-file
+
+  path-folder:
+    <<: *string
+    errorMessage: String should be a valid folder path.
+    pattern:: path-folder
+
+  ext-js  =: '\.[mc]?jsx?$'
+  ext-es  =: ext-js.replace("j" "[tj]")
+  file-js =: path-segment + ext-js
+  file-es =: path-segment + ext-es
+
+  path-file-js:
+    <<: *string
+    errorMessage: String should be a valid JavaScript file path.
+    pattern:: drop-last(1 path-folder):join + file-js
+
+  path-file-es:
+    <<: *string
+    errorMessage: String should be a valid JavaScript or TypeScript file path.
+    pattern:: drop-last(1 path-folder):join + file-es
+
+  path-file-man:
+    <<: *string
+    errorMessage: String should be a valid man page file path.
+    pattern: ^(\.?\/(usr\/share\/man\/)?)?(man[1-8]?\/)?[a-z]+(\.[1-8])?$
