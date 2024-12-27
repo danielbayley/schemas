@@ -1,14 +1,16 @@
 !yamlscript/v0/data
 
-filename =: &filename fs-filename(FILE):fs/strip-ext
+name =: fs-basename(FILE "*")
 
 $schema:: ENV.schema
-$id:: "$(ENV.URL)/$(*filename).json"
+$id:: "$(ENV.URL)/$name.json"
 title: npm Package Name
 description: A valid npm package name, with optional scope.
 $comment: https://github.com/npm/validate-npm-package-name#naming-rules
+
 type: string
 minLength: 1
 maxLength: 214
-source =: &src "https://github.com/dword-design/package-name-regex/raw/refs/heads/master/src/index.js"
-pattern:: slurp(*src).lines().nth(1).trim().replace(qr("^/|/$"))
+branch =: "master"
+source =: "https://github.com/dword-design/package-name-regex/raw/refs/heads/$branch/src/index.js"
+pattern:: source:slurp:lines:second:trim.replace(/^\/|\/$/)

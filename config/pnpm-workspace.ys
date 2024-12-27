@@ -1,74 +1,58 @@
 !yamlscript/v0/data
 
-filename =: &filename fs-filename(FILE):fs/strip-ext
-domain   =: &domain "pnpm.io"
-branch   =: &branch "main"
-repo     =: &repo "https://github.com/pnpm/$(*domain)"
-docs     =: &docs "$(*repo)/raw/refs/heads/$(*branch)/docs"
-id       =: &id   "$(*filename)_yaml"
-md       =: "$(*docs)/$(*id).md"
-markdown =: slurp(md):lines
-metadata =: yaml/load(markdown.nth(2))
+name     =: fs-basename(FILE "*")
+domain   =: "pnpm.io"
+branch   =: "main"
+repo     =: "https://github.com/pnpm/$domain"
+docs     =: "$repo/raw/refs/heads/$branch/docs"
+id       =: "$name_yaml"
+markdown =: slurp("$docs/$id.md")
+metadata =: markdown:lines.nth(2):yaml/load
 title    =: &title metadata.title
 
 $schema:: ENV.schema
-$id:: "$(ENV.URL)/$(*filename).json"
+$id:: "$(ENV.URL)/$name.json"
 title: *title
-description:: "JSON schema for $(*title) files."
-$comment:: "https://$(*domain)/$(*id)"
+description:: "JSON schema for $title files."
+$comment:: "https://$domain/$id"
 
 $defs:
-  object: &object
+  object:
     type: object
     minProperties: 1
+    anchor =:: &object
+      $ref: "#/$defs/object"
 
-  object-strict:
-    <<: *object
-    additionalProperties: false
-
-  array: &array
-    type: array
-    minItems: 1
-
-  array-unique:
-    <<: *array
-    uniqueItems: true
-
-  string:
-    type: string
-    minLength: 1
-
-  path:
-    $ref: "#/$defs/string"
-    maxLength: 260
-
-$ref: "#/$defs/object-strict"
+<<: *object
+additionalProperties: false
 required: [packages]
 properties:
   $schema:
+    $comment: https://json-schema.org/understanding-json-schema/reference/schema#schema
     $ref:: "$(ENV.ref)/uri.json"
 
   remove =: /[^\w.\s\/-]+/
 
   packages:
     description::
-      markdown.subvec(5 9).join("\n").replace(remove) +
-      markdown.subvec(23 25).join(" ")
-    $ref: "#/$defs/array-unique"
+      markdown:lines.subvec(5 9).join("\n").replace(remove) +
+      markdown:lines.subvec(23 25).join(" ")
+    type: array
+    minItems: 1
+    uniqueItems: true
     items:
-      $ref: "#/$defs/path"
+      $ref:: "$(ENV.ref)/paths.json#/\\$defs/folder"
 
-  md =: "$(*docs)/catalogs.md"
-  markdown =: slurp(md):lines
+  markdown =: slurp("$docs/catalogs.md")
 
   catalog:
     $ref:: &dependency "$(ENV.ref)/package.json#/\\$defs/dependency"
-    description:: markdown.nth(86).replace(remove)
-    $comment:: "https://$(*domain)#default-catalog"
+    description:: markdown:lines.nth(86).replace(remove)
+    $comment:: "https://$domain#default-catalog"
 
   catalogs:
     $ref: "#/$defs/object"
-    description:: markdown.nth(98).replace(remove)
-    $comment:: "https://$(*domain)#named-catalogs"
+    description:: markdown:lines.nth(98).replace(remove)
+    $comment:: "https://$domain#named-catalogs"
     additionalProperties:
       $ref: *dependency

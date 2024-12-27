@@ -1,10 +1,10 @@
 !yamlscript/v0/data
 
-filename =: &filename fs-filename(FILE):fs/strip-ext
+name =: fs-basename(FILE "*")
 
 $schema:: ENV.schema
-$id:: "https://$(ENV.URL)/$(*filename).json"
-title:: uc1(*filename)
+$id:: "$(ENV.URL)/$name.json"
+title:: name:uc1
 description: &desc A valid file or folder path.
 $comment: https://regexr.com
 $ref: "#/$defs/path"
@@ -19,12 +19,12 @@ $defs:
 
   ext          =: '\.[A-Za-z0-9]{1,14}$'
   path-segment =: '[^\n/.]+'
-  path-folder  =: str('^~?\/?(' path-segment "|" path-segment.replace(".") '\/)*$')
-  path-file    =: str('^[~.]?\/?.*' ext)
+  path-folder  =: str("^~?\/?($path-segment|" path-segment.replace(".") "\/)*$")
+  path-file    =: "^[~.]?\\/?.*$ext"
 
   path:
     <<: *string
-    errorMessage:: "String should be $(lc(*desc))"
+    errorMessage:: "String should be $(lc *desc)"
     oneOf:
     - pattern:: path-file
     - pattern:: path-folder

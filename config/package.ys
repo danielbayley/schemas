@@ -1,24 +1,25 @@
 !yamlscript/v0/data
 
-filename =: &filename fs-filename(FILE):fs/strip-ext
-version  =: &v 11
-branch   =: &branch "main"
-path     =: &path "cli/v$(*v)/configuring-npm/$(*filename)-json"
-mdx      =: "https://github.com/npm/documentation/raw/refs/heads/$(*branch)/content/$(*path).mdx"
-markdown =: slurp(mdx):lines
+name     =: fs-basename(FILE "*")
+version  =: 11
+branch   =: "main"
+path     =: "cli/v$version/configuring-npm/${name}-json"
+docs     =: "https://docs.npmjs.com/$path"
+mdx      =: "https://github.com/npm/documentation/raw/refs/heads/$branch/content/$path.mdx"
+markdown =: mdx:slurp:lines
 metadata =: markdown.subvec(1 7).join("\n")
-yaml     =: yaml/load(metadata)
+yaml     =: metadata:yaml/load
 
 $schema:: ENV.schema
 $id:: "$(ENV.URL)/$(yaml.title)"
 title:: yaml.title
 description:: yaml.description
-$comment:: &docs "https://docs.npmjs.com/$(*path)"
+$comment:: docs
 
 $defs:
   dependency:
     description:: markdown.nth(497)
-    $comment:: "$(*docs)#dependencies"
+    $comment:: "$docs#dependencies"
     type: object
     minProperties: 1
     propertyNames:

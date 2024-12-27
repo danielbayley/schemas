@@ -1,13 +1,16 @@
 !yamlscript/v0/data
 
-filename =: &filename fs-filename(FILE):fs/strip-ext
+name   =: fs-basename(FILE "*")
+domain =: "$name.org"
 
 $schema:: ENV.schema
-$id:: "$(ENV.URL)/$(*filename).json"
+$id:: "$(ENV.URL)/$name.json"
 title: SemVer
-description: A semver.org compliant semantic version number.
-$comment: https://semver.org#is-there-a-suggested-regular-expression-regex-to-check-a-semver-string
+description:: "A $domain compliant semantic version number."
+$comment:: "https://$domain#is-there-a-suggested-regular-expression-regex-to-check-a-${name}-string"
+
 type: string
 minLength: 3
-markdown =: "https://github.com/semver/semver/raw/refs/heads/master/semver.md"
-pattern:: slurp(markdown):lines.nth(356)
+branch   =: "master"
+markdown =: "https://github.com/$name/$name/raw/refs/heads/$branch/$name.md"
+pattern:: markdown:slurp:lines.nth(356)

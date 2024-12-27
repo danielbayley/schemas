@@ -1,16 +1,22 @@
 !yamlscript/v0/data
 
-filename =: &filename fs-filename(FILE):fs/strip-ext
+name =: fs-basename(FILE "*")
+org  =: "spdx"
 
 $schema:: ENV.schema
-$id:: "$(ENV.URL)/$(*filename).json"
-title:: uc1(*filename)
-description: A valid SPDX license ID, or expression.
-$comment: https://spdx.org/licenses
-ids =: "https://github.com/jslicense/spdx-license-ids/raw/refs/heads/main/index.json"
+$id:: "$(ENV.URL)/$name.json"
+title:: name:uc1
+description:: "A valid $(org:uc) $name ID, or expression."
+$comment:: "https://$org.org/${name}s"
+
+branch =: "main"
+ids =: "https://github.com/js$name/${org}-${name}-ids/raw/refs/heads/$branch/index.json"
 oneOf:
-- enum:: merge(json/load(slurp(ids)) "UNLICENSED")
+- enum:: ids:slurp:json/load
+- enum: [UNLICENSED]
 - type: string
-  $comment: https://spdx.github.io/spdx-spec/latest/annexes/spdx-license-expressions
+  $comment:: "https://$org.github.io/${org}-spec/latest/annexes/${org}-${name}-expressions"
   minLength: 3
-  pattern: ^\([A-Za-z0-9.-]{3,}\s+(AND|and|OR|or)\s+[A-Za-z0-9.-]{3,}\)$
+  range =: "[A-Za-z0-9.-]{3,}"
+  operators =: "(AND|and|OR|or)"
+  pattern:: "^\\($range\\s+$operators\\s+$range\\)$"
