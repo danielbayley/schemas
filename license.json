@@ -640,7 +640,11 @@
         "xlock",
         "xpp",
         "xzoom",
-        "zlib-acknowledgement",
+        "zlib-acknowledgement"
+      ]
+    },
+    {
+      "enum": [
         "UNLICENSED"
       ]
     },
