@@ -39,8 +39,8 @@ $defs:
     errorMessage: String should be a valid folder path.
     pattern:: path-folder
 
-  ext-js =: '\.[mc]?jsx?$'
-  ext-es =: ext-js.replace("j" "[tj]")
+  ext-js =: '(\.min)?\.[mc]?jsx?$'
+  ext-es =: "(\\.[mc]?tsx?$|$ext-js)"
 
   file-json =: path-segment + '\.json$'
   file-js   =: path-segment + ext-js
