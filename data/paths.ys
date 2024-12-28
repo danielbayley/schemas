@@ -34,6 +34,11 @@ $defs:
     errorMessage: String should be a valid file path.
     pattern:: path-file
 
+  path-not-folder:
+    <<: *string
+    errorMessage: String should be a valid file path with no trailing slash.
+    pattern: ^[~.]?\/?[^\n]+[^/]$
+
   path-folder:
     <<: *string
     errorMessage: String should be a valid folder path.
