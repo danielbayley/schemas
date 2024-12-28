@@ -28,6 +28,11 @@
       "pattern": "^[~.]?\\/?.*\\.[A-Za-z0-9]{1,14}$",
       "$ref": "#/$defs/string"
     },
+    "path-not-folder": {
+      "errorMessage": "String should be a valid file path with no trailing slash.",
+      "pattern": "^[~.]?\\/?[^\\n]+[^/]$",
+      "$ref": "#/$defs/string"
+    },
     "path-folder": {
       "errorMessage": "String should be a valid folder path.",
       "pattern": "^~?\\/?([^\\n/.]+|[^\\n/]+\\/)*$",
