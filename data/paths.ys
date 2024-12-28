@@ -39,10 +39,17 @@ $defs:
     errorMessage: String should be a valid folder path.
     pattern:: path-folder
 
-  ext-js  =: '\.[mc]?jsx?$'
-  ext-es  =: ext-js.replace("j" "[tj]")
-  file-js =: path-segment + ext-js
-  file-es =: path-segment + ext-es
+  ext-js =: '\.[mc]?jsx?$'
+  ext-es =: ext-js.replace("j" "[tj]")
+
+  file-json =: path-segment + '\.json$'
+  file-js   =: path-segment + ext-js
+  file-es   =: path-segment + ext-es
+
+  path-file-json:
+    <<: *string
+    errorMessage: String should be a valid Javascript or JSON file path.
+    pattern:: drop-last(1 path-folder):join + file-json
 
   path-file-js:
     <<: *string
