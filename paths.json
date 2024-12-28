@@ -38,16 +38,9 @@
       "pattern": "^~?\\/?([^\\n/.]+|[^\\n/]+\\/)*[^\\n/.]+\\.[mc]?jsx?$",
       "$ref": "#/$defs/string"
     },
-    "path-file-js/on": {
+    "path-file-json": {
       "errorMessage": "String should be a valid Javascript or JSON file path.",
-      "oneOf": [
-        {
-          "pattern": "^~?\\/?([^\\n/.]+|[^\\n/]+\\/)*[^\\n/.]+\\.[mc]?jsx?$"
-        },
-        {
-          "pattern": "^~?\\/?([^\\n/.]+|[^\\n/]+\\/)*[^\\n/.]+\\.json$"
-        }
-      ],
+      "pattern": "^~?\\/?([^\\n/.]+|[^\\n/]+\\/)*[^\\n/.]+\\.json$",
       "$ref": "#/$defs/string"
     },
     "path-file-es": {
