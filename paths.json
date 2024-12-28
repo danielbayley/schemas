@@ -40,12 +40,12 @@
     },
     "path-file-js": {
       "errorMessage": "String should be a valid JavaScript file path.",
-      "pattern": "^~?\\/?([^\\n/.]+|[^\\n/]+\\/)*[^\\n/.]+\\.[mc]?jsx?$",
+      "pattern": "^~?\\/?([^\\n/.]+|[^\\n/]+\\/)*[^\\n/.]+(\\.min)?\\.[mc]?jsx?$",
       "$ref": "#/$defs/string"
     },
     "path-file-es": {
       "errorMessage": "String should be a valid JavaScript or TypeScript file path.",
-      "pattern": "^~?\\/?([^\\n/.]+|[^\\n/]+\\/)*[^\\n/.]+\\.[mc]?[tj]sx?$",
+      "pattern": "^~?\\/?([^\\n/.]+|[^\\n/]+\\/)*[^\\n/.]+(\\.min)?\\.[mc]?[tj]sx?$",
       "$ref": "#/$defs/string"
     },
     "path-file-man": {
