@@ -33,11 +33,6 @@
       "pattern": "^~?\\/?([^\\n/.]+|[^\\n/]+\\/)*$",
       "$ref": "#/$defs/string"
     },
-    "path-file-json": {
-      "errorMessage": "String should be a valid Javascript or JSON file path.",
-      "pattern": "^~?\\/?([^\\n/.]+|[^\\n/]+\\/)*[^\\n/.]+\\.json$",
-      "$ref": "#/$defs/string"
-    },
     "path-file-js": {
       "errorMessage": "String should be a valid JavaScript file path.",
       "pattern": "^~?\\/?([^\\n/.]+|[^\\n/]+\\/)*[^\\n/.]+\\.[mc]?jsx?$",
