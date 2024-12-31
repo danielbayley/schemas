@@ -28,29 +28,19 @@
       "pattern": "^[~.]?\\/?.*\\.[A-Za-z0-9]{1,14}$",
       "$ref": "#/$defs/string"
     },
-    "path-not-folder": {
-      "errorMessage": "String should be a valid file path with no trailing slash.",
-      "pattern": "^[~.]?\\/?[^\\n]+[^/]$",
-      "$ref": "#/$defs/string"
-    },
     "path-folder": {
       "errorMessage": "String should be a valid folder path.",
       "pattern": "^~?\\/?([^\\n/.]+|[^\\n/]+\\/)*$",
       "$ref": "#/$defs/string"
     },
-    "path-file-json": {
-      "errorMessage": "String should be a valid Javascript or JSON file path.",
-      "pattern": "^~?\\/?([^\\n/.]+|[^\\n/]+\\/)*[^\\n/.]+\\.json$",
-      "$ref": "#/$defs/string"
-    },
     "path-file-js": {
       "errorMessage": "String should be a valid JavaScript file path.",
-      "pattern": "^~?\\/?([^\\n/.]+|[^\\n/]+\\/)*[^\\n/.]+(\\.min)?\\.[mc]?jsx?$",
+      "pattern": "^~?\\/?([^\\n/.]+|[^\\n/]+\\/)*[^\\n/.]+\\.[mc]?jsx?$",
       "$ref": "#/$defs/string"
     },
     "path-file-es": {
       "errorMessage": "String should be a valid JavaScript or TypeScript file path.",
-      "pattern": "^~?\\/?([^\\n/.]+|[^\\n/]+\\/)*[^\\n/.]+(\\.[mc]?tsx?$|(\\.min)?\\.[mc]?jsx?$)",
+      "pattern": "^~?\\/?([^\\n/.]+|[^\\n/]+\\/)*[^\\n/.]+\\.[mc]?[tj]sx?$",
       "$ref": "#/$defs/string"
     },
     "path-file-man": {
