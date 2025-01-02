@@ -1,0 +1,11 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://cdn.statically.io/gh/danielbayley/schemas/refs/heads/json/base64.json",
+  "title": "Base64",
+  "description": "A valid Base64 encoded string.",
+  "$comment": "https://developer.mozilla.org/docs/Glossary/Base64",
+  "errorMessage": "Should be a valid Base64 encoded string.",
+  "type": "string",
+  "minLength": 4,
+  "pattern": "^([A-Za-z0-9/+]{4})*([A-Za-z0-9/+]{4}|[A-Za-z0-9/+]{3}=|[A-Za-z0-9/+]{2}==)$"
+}
