@@ -1,0 +1,15 @@
+!yamlscript/v0/data
+
+name =: fs-basename(FILE "*")
+
+$schema:: ENV.schema
+$id:: "$(ENV.URL)/$name.json"
+title:: &title name:uc1
+description:: &desc "A valid $(*title) encoded string."
+$comment:: "https://developer.mozilla.org/docs/Glossary/$(*title)"
+errorMessage:: "Should be $(first(*desc):lc + rest(*desc):join)"
+
+type: string
+minLength: 4
+range =: "[A-Za-z0-9/+]"
+pattern:: "^($range{4})*($range{3}=|$range{2}==)?$"
