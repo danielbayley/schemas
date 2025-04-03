@@ -30,12 +30,12 @@
     },
     "catalog": {
       "$ref": "/gh/danielbayley/schemas/refs/heads/json/package.json#/$defs/dependency",
-      "description": "The top-level catalog field allows users to define a catalog named default.",
+      "description": " Default Catalog",
       "$comment": "https://pnpm.io#default-catalog"
     },
     "catalogs": {
       "$ref": "#/$defs/object",
-      "description": "Multiple catalogs with arbitrarily chosen names can be configured under the catalogs key.",
+      "description": " Named Catalogs",
       "$comment": "https://pnpm.io#named-catalogs",
       "additionalProperties": {
         "$ref": "/gh/danielbayley/schemas/refs/heads/json/package.json#/$defs/dependency"
