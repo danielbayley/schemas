@@ -1,0 +1,16 @@
+!yamlscript/v0/data
+
+name =: fs-basename(FILE "*")
+
+$schema:: ENV.schema
+$id:: "$(ENV.URL)/$name.json"
+title: GitHub Username
+description: A valid GitHub username.
+$comment: https://docs.github.com/enterprise-cloud@latest/admin/managing-iam/iam-configuration-reference/username-considerations-for-external-authentication
+
+type: string
+minLength: 1
+maxLength: 39
+branch =: "master"
+source =: "https://raw.githubusercontent.com/shinnn/github-username-regex/refs/heads/$branch/index.js"
+pattern:: source:slurp:lines:first:trim.replace(/.*\/(.*)\/.*/ "$1")
