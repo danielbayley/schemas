@@ -41,9 +41,10 @@ jobs:
     - name: Compile Schemas
       id: compile
       shell: /bin/zsh --no-rcs --err-exit --pipe-fail {0}
-      run: |
-        mkdir $BRANCH
-        for file (*/${{ inputs.schema || '*' }}.ys) ys --json $file | jq --indent ${TABSIZE:-2} > $BRANCH/$file:t:r.json
+      run: >-
+        mkdir $BRANCH &&
+        for file (*/${{ inputs.schema || '*' }}.ys) ys --json $file |
+          jq --indent ${TABSIZE:-2} > $BRANCH/$file:t:r.json
       env:
         URL: https://${{ env.CDN }}${{ env.ref }}
 
