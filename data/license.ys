@@ -13,7 +13,7 @@ branch =: "main"
 ids =: "https://github.com/js$name/${org}-${name}-ids/raw/refs/heads/$branch/index.json"
 oneOf:
 - enum:: ids:slurp:json/load
-- enum: [UNLICENSED]
+- const: UNLICENSED
 - type: string
   $comment:: "https://$org.github.io/${org}-spec/latest/annexes/${org}-${name}-expressions"
   minLength: 3

@@ -24,7 +24,7 @@ $defs:
     minProperties: 1
     propertyNames:
       anyOf:
-      - enum: [<<]
+      - const: <<
       - $ref:: "$(ENV.ref)/npm-package-name.json"
     additionalProperties:
       $ref:: "$(ENV.ref)/npm-semver.json"
