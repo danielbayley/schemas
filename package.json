@@ -13,9 +13,7 @@
       "propertyNames": {
         "anyOf": [
           {
-            "enum": [
-              "<<"
-            ]
+            "const": "<<"
           },
           {
             "$ref": "/gh/danielbayley/schemas/refs/heads/json/npm-package-name.json"
