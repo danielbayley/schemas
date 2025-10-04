@@ -29,7 +29,7 @@ jobs:
 
     steps:
     - name: Checkout & install YAMLScript
-      uses: yaml/yamlscript-workflow-action@main
+      uses: yaml/yamlscript-workflow-action@9658b54c28ba47b5bcc74dfe29d636908fcb158f
       with:
         ys-file: /dev/null
 
@@ -52,7 +52,7 @@ jobs:
 
     - name: Deploy
       if: inputs.schema == '' && steps.compile.conclusion == 'success'
-      uses: s0/git-publish-subdir-action@develop
+      uses: s0/git-publish-subdir-action@ac113f6bfe8896e85a373534242c949a7ea74c98
       env:
         REPO: self
         FOLDER: ${{ env.BRANCH }}
