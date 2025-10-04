@@ -1,0 +1,11 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://cdn.statically.io/gh/danielbayley/schemas/refs/heads/json/github-username.json",
+  "title": "GitHub Username",
+  "description": "A valid GitHub username.",
+  "$comment": "https://docs.github.com/enterprise-cloud@latest/admin/managing-iam/iam-configuration-reference/username-considerations-for-external-authentication",
+  "type": "string",
+  "minLength": 1,
+  "maxLength": 39,
+  "pattern": "^[a-z\\d](?:[a-z\\d]|-(?=[a-z\\d])){0,38}$"
+}
