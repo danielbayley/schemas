@@ -12,5 +12,5 @@ type: string
 minLength: 1
 maxLength: 214
 branch =: "master"
-source =: "https://github.com/dword-design/package-name-regex/raw/refs/heads/$branch/src/index.js"
-pattern:: source:slurp:lines:second:trim.replace(/^\/|\/$/)
+source =: "https://github.com/dword-design/package-name-regex/raw/refs/heads/$branch/src/index.ts"
+pattern:: source:slurp:lines:second:trim.replace(/^\/|\/;?$/)
