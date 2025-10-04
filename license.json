@@ -677,7 +677,9 @@
       ]
     },
     {
-      "const": "UNLICENSED"
+      "enum": [
+        "UNLICENSED"
+      ]
     },
     {
       "type": "string",
