@@ -9,6 +9,11 @@ on:
     - .github/workflows/*.ya?ml
 
   workflow_dispatch:
+    inputs:
+      schema:
+        description: Specify a particular schema to compile.
+        type: string
+
   schedule:
   - cron: 0 5 * * * # 5AM daily
 
@@ -38,12 +43,12 @@ jobs:
       shell: /bin/zsh --no-rcs --err-exit --pipe-fail {0}
       run: |
         mkdir $BRANCH
-        for file (*/*.ys) ys --json $file | jq > $BRANCH/$file:t:r.json
+        for file (*/${{ inputs.schema || '*' }}.ys) ys --json $file | jq > $BRANCH/$file:t:r.json
       env:
         URL: https://${{ env.CDN }}${{ env.ref }}
 
     - name: Deploy
-      if: steps.compile.conclusion == 'success'
+      if: inputs.schema == '' && steps.compile.conclusion == 'success'
       uses: s0/git-publish-subdir-action@develop
       env:
         REPO: self
