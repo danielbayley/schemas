@@ -43,7 +43,7 @@ jobs:
       shell: /bin/zsh --no-rcs --err-exit --pipe-fail {0}
       run: |
         mkdir $BRANCH
-        for file (*/${{ inputs.schema || '*' }}.ys) ys --json $file | jq > $BRANCH/$file:t:r.json
+        for file (*/${{ inputs.schema || '*' }}.ys) ys --json $file | jq --indent ${TABSIZE:-2} > $BRANCH/$file:t:r.json
       env:
         URL: https://${{ env.CDN }}${{ env.ref }}
 
