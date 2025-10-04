@@ -1,6 +1,6 @@
 !YS-v0:
 
-name     =: fs-basename(FILE "*")
+name     =: fs-filename(FILE "*")
 domain   =: "pnpm.io"
 branch   =: "main"
 repo     =: "https://github.com/pnpm/$domain"

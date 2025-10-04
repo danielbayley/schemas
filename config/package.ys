@@ -1,6 +1,6 @@
 !YS-v0:
 
-name     =: fs-basename(FILE "*")
+name     =: fs-filename(FILE "*")
 version  =: 11
 branch   =: "main"
 path     =: "cli/v$version/configuring-npm/${name}-json"

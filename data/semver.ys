@@ -1,6 +1,6 @@
 !YS-v0:
 
-name   =: fs-basename(FILE "*")
+name   =: fs-filename(FILE "*")
 domain =: "$name.org"
 
 $schema:: ENV.schema
