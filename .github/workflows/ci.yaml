@@ -44,7 +44,7 @@ jobs:
       run: >-
         mkdir $BRANCH &&
         for file (*/${{ inputs.schema || '*' }}.ys) ys --json $file |
-          jq --indent ${TABSIZE:-2} > $BRANCH/$file:t:r.json
+          jq --indent ${TABSIZE:-2} --exit-status > $BRANCH/$file:t:r.json
       env:
         URL: https://${{ env.CDN }}${{ env.ref }}
 
