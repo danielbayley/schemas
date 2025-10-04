@@ -58,3 +58,4 @@ jobs:
         FOLDER: ${{ env.BRANCH }}
         MESSAGE: "{msg}"
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        SKIP_EMPTY_COMMITS: true
