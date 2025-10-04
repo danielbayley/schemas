@@ -22,6 +22,7 @@ jobs:
     if: github.ref == 'refs/heads/main'
     runs-on: macos-latest
     env:
+      ACTIONS_STEP_DEBUG: ${{ vars.ACTIONS_STEP_DEBUG }}
       draft: 2020-12
       CDN: cdn.statically.io
       BRANCH: json
@@ -43,7 +44,8 @@ jobs:
       shell: /bin/zsh --no-rcs --err-exit --pipe-fail {0}
       run: >-
         mkdir $BRANCH &&
-        for file (*/${{ inputs.schema || '*' }}.ys) ys --json $file |
+        for file (*/${{ inputs.schema || '*' }}.ys)
+          ys --json $file ${=ACTIONS_STEP_DEBUG:+-d --xtrace} |
           jq --indent ${TABSIZE:-2} --exit-status > $BRANCH/$file:t:r.json
       env:
         URL: https://${{ env.CDN }}${{ env.ref }}
