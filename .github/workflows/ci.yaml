@@ -28,7 +28,7 @@ jobs:
       BRANCH: json
 
     steps:
-    - name: Checkout & install YAMLScript
+    - name: Checkout & install YS
       uses: yaml/yamlscript-workflow-action@9658b54c28ba47b5bcc74dfe29d636908fcb158f
       with:
         ys-file: /dev/null
