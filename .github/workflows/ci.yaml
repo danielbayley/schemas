@@ -33,6 +33,7 @@ jobs:
         ref: /gh/${{ github.repository }}/refs/heads/${{ env.BRANCH }}
 
     - name: Compile Schemas
+      id: compile
       shell: /bin/zsh --no-rcs --err-exit --pipe-fail {0}
       run: |
         mkdir $BRANCH
@@ -41,6 +42,7 @@ jobs:
         URL: https://${{ env.CDN }}${{ env.ref }}
 
     - name: Deploy
+      if: steps.compile.conclusion == 'success'
       uses: s0/git-publish-subdir-action@develop
       env:
         REPO: self
