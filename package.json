@@ -6,7 +6,7 @@
   "$comment": "https://docs.npmjs.com/cli/v11/configuring-npm/package-json",
   "$defs": {
     "dependency": {
-      "description": "Dependencies are specified in a simple object that maps a package name to a version range. The version range is a string which has one or more space-separated descriptors. Dependencies can also be identified with a tarball or git URL.",
+      "description": "  \"config\": {",
       "$comment": "https://docs.npmjs.com/cli/v11/configuring-npm/package-json#dependencies",
       "type": "object",
       "minProperties": 1,
