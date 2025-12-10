@@ -6,7 +6,7 @@
   "$comment": "https://docs.npmjs.com/cli/v11/configuring-npm/package-json",
   "$defs": {
     "dependency": {
-      "description": "  \"config\": {",
+      "description": "    \"url\": \"git+https://github.com/npm/cli.git\",",
       "$comment": "https://docs.npmjs.com/cli/v11/configuring-npm/package-json#dependencies",
       "type": "object",
       "minProperties": 1,
